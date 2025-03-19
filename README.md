@@ -16,7 +16,7 @@ Example:
 package main
 
 func main() {
-	tfnt, err := unitype.ParseFile("./MiSans-Bold.ttf")
+	tfnt, err := subfont.ParseFile("./MiSans-Bold.ttf")
 	if err != nil {
         panic(err)
 	}
