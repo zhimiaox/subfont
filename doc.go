@@ -5,4 +5,4 @@
 
 // Package unitype supports loading and writing truetype fonts. Specifically intended for font validation,
 // repairing, subsetting for use in PDF.
-package unitype
+package subfont
