@@ -104,8 +104,9 @@ func (f *Font) LookupRunes(runes []rune) ([]GlyphIndex, []rune) {
 		f.GetCmap(0, 3),
 		f.GetCmap(3, 10),
 	)
+	// runes = append(runes, 0x0, 0x8, 0x1d, 0x9, 0xd, 0x20, 0xa0)
 	runesMap := make(map[GlyphIndex]rune)
-	indices := []GlyphIndex{1}
+	indices := []GlyphIndex{0}
 	for _, r := range runes {
 		for _, cmap := range maps {
 			if cmap == nil {
