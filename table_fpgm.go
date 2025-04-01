@@ -5,10 +5,6 @@
 
 package subfont
 
-import (
-	"log/slog"
-)
-
 // fpgmTable represents font program instructions and is needed by fonts that are instructed.
 type fpgmTable struct {
 	instructions []uint8
@@ -20,7 +16,7 @@ func (f *font) parseFpgm(r *byteReader) (*fpgmTable, error) {
 		return nil, err
 	}
 	if !has || tr == nil {
-		slog.Debug("fpgm table absent")
+		// slog.Debug("fpgm table absent")
 		return nil, nil
 	}
 

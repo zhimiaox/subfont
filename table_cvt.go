@@ -5,10 +5,6 @@
 
 package subfont
 
-import (
-	"log/slog"
-)
-
 // cvtTable represents the Control Value Table (cvt).
 // This table contains a list of values that can be referenced by instructions.
 // TODO: For subsetting/optimization it would be good to know what glyphs need each value, so non-used values can be removed.
@@ -24,7 +20,7 @@ func (f *font) parseCvt(r *byteReader) (*cvtTable, error) {
 		return nil, err
 	}
 	if !has || tr == nil {
-		slog.Debug("cvt table absent")
+		// slog.Debug("cvt table absent")
 		return nil, nil
 	}
 

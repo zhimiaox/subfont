@@ -8,9 +8,7 @@ package subfont
 import (
 	"bufio"
 	"encoding/binary"
-	"fmt"
 	"io"
-	"log/slog"
 )
 
 // byteReader encapsulates io.ReadSeeker with buffering and provides methods to read binary data as
@@ -107,7 +105,7 @@ func (r *byteReader) readSlice(slice interface{}, length int) error {
 		}
 
 	default:
-		slog.Error(fmt.Sprintf("Unsupported type: %T (readSlice)", t))
+		// slog.Error(fmt.Sprintf("Unsupported type: %T (readSlice)", t))
 		return errTypeCheck
 	}
 	return nil
@@ -209,7 +207,7 @@ func (r byteReader) read(fields ...interface{}) error {
 			*t = val
 
 		default:
-			slog.Error(fmt.Sprintf("Unsupported type: %T (read)", t))
+			// slog.Error(fmt.Sprintf("Unsupported type: %T (read)", t))
 			return errTypeCheck
 		}
 	}

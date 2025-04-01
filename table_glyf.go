@@ -32,13 +32,13 @@ type glyfTable struct {
 
 func (f *font) parseGlyf(r *byteReader) (*glyfTable, error) {
 	if f.maxp == nil || f.loca == nil {
-		slog.Debug("required field missing (glyf)")
+		// slog.Debug("required field missing (glyf)")
 		return nil, errRequiredField
 	}
 
 	tr, has, err := f.seekToTable(r, "glyf")
 	if err != nil {
-		slog.Debug(fmt.Sprintf("ERROR: %v", err))
+		// slog.Debug(fmt.Sprintf("ERROR: %v", err))
 		return nil, err
 	}
 	if !has {
@@ -47,27 +47,27 @@ func (f *font) parseGlyf(r *byteReader) (*glyfTable, error) {
 
 	glyf := &glyfTable{}
 
-	slog.Debug("parsing glyfs")
-	slog.Debug(fmt.Sprintf("Number of glyphs: %d", f.maxp.numGlyphs))
-	slog.Debug(fmt.Sprintf("Loca offset format: %d", f.head.indexToLocFormat))
+	// slog.Debug("parsing glyfs")
+	// slog.Debug(fmt.Sprintf("Number of glyphs: %d", f.maxp.numGlyphs))
+	// slog.Debug(fmt.Sprintf("Loca offset format: %d", f.head.indexToLocFormat))
 
 	for i := 0; i < int(f.maxp.numGlyphs); i++ {
 		gid := GlyphIndex(i)
 		gdOffset, gdLen, err := f.GetGlyphDataOffset(gid)
 		if err != nil {
-			slog.Debug(fmt.Sprintf("ERROR: %v", err))
+			// slog.Debug(fmt.Sprintf("ERROR: %v", err))
 			return nil, err
 		}
 
 		if gdOffset > int64(tr.length) {
-			slog.Debug(fmt.Sprintf("gid: %d, gdOffset: %d, tr len: %d, gd len: %d", gid, gdOffset, tr.length, gdLen))
-			slog.Debug(fmt.Sprintf("Range check error (glyf): %d > %d", gdOffset, tr.length))
+			// slog.Debug(fmt.Sprintf("gid: %d, gdOffset: %d, tr len: %d, gd len: %d", gid, gdOffset, tr.length, gdLen))
+			// slog.Debug(fmt.Sprintf("Range check error (glyf): %d > %d", gdOffset, tr.length))
 			return nil, errRangeCheck
 		}
 
 		err = r.SeekTo(int64(tr.offset) + gdOffset)
 		if err != nil {
-			slog.Debug(fmt.Sprintf("ERROR: %v", err))
+			// slog.Debug(fmt.Sprintf("ERROR: %v", err))
 			return nil, err
 		}
 
@@ -75,7 +75,7 @@ func (f *font) parseGlyf(r *byteReader) (*glyfTable, error) {
 		desc.raw = make([]byte, gdLen)
 		err = r.readBytes(&desc.raw, int(gdLen))
 		if err != nil {
-			slog.Debug(fmt.Sprintf("ERROR: %v", err))
+			// slog.Debug(fmt.Sprintf("ERROR: %v", err))
 			return nil, err
 		}
 		glyf.descs = append(glyf.descs, &desc)
@@ -109,8 +109,8 @@ func (gd *glyphDescription) parse() error {
 	r := newByteReader(bytes.NewReader(gd.raw))
 	err := gd.parseHeader(r)
 	if err != nil {
-		slog.Debug(fmt.Sprintf("ERROR parsing header: %v", err))
-		slog.Debug(fmt.Sprintf("Raw data: %d bytes", len(gd.raw)))
+		// slog.Debug(fmt.Sprintf("ERROR parsing header: %v", err))
+		// slog.Debug(fmt.Sprintf("Raw data: %d bytes", len(gd.raw)))
 		return err
 	}
 
@@ -189,12 +189,12 @@ func (gd *glyphDescription) parseComposite(r *byteReader) error {
 	if instructionsFollow {
 		instructionLen := int64(len(gd.raw)) - r.Offset()
 		if instructionLen <= 0 {
-			slog.Debug("Read more than length in loca table showed")
+			// slog.Debug("Read more than length in loca table showed")
 			return errors.New("no room for instructions")
 		}
 		err := r.readSlice(&composite.instructions, int(instructionLen))
 		if err != nil {
-			slog.Debug("Failed to read instructions")
+			// slog.Debug("Failed to read instructions")
 			return err
 		}
 	}

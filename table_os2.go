@@ -5,10 +5,6 @@
 
 package subfont
 
-import (
-	"log/slog"
-)
-
 // os2Table represents the OS/2 metrics table. It consists of metrics and other data that are required.
 type os2Table struct {
 	// Version 0+
@@ -65,7 +61,7 @@ func (f *font) parseOS2Table(r *byteReader) (*os2Table, error) {
 		return nil, err
 	}
 	if !has {
-		slog.Debug("OS/2 table not present")
+		// slog.Debug("OS/2 table not present")
 		return nil, nil
 	}
 
@@ -76,7 +72,7 @@ func (f *font) parseOS2Table(r *byteReader) (*os2Table, error) {
 	}
 
 	if t.version > 10 {
-		slog.Debug("OS/2 table version range error")
+		// slog.Debug("OS/2 table version range error")
 		return nil, errRangeCheck
 	}
 

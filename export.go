@@ -7,9 +7,7 @@ package subfont
 
 import (
 	"bytes"
-	"fmt"
 	"io"
-	"log/slog"
 	"math"
 	"os"
 	"slices"
@@ -125,8 +123,8 @@ func (f *Font) LookupRunes(runes []rune) ([]GlyphIndex, []rune) {
 	for _, gid := range indices {
 		runes = append(runes, runesMap[gid])
 	}
-	slog.Debug(fmt.Sprintf("Runes: %+v %s", runes, string(runes)))
-	slog.Debug(fmt.Sprintf("GIDs: %+v", indices))
+	// slog.Debug(fmt.Sprintf("Runes: %+v %s", runes, string(runes)))
+	// slog.Debug(fmt.Sprintf("GIDs: %+v", indices))
 	return indices, runes
 }
 
@@ -161,7 +159,7 @@ func (f *Font) SubsetKeepIndices(indices []GlyphIndex) (*Font, error) {
 		for _, gid := range toscan {
 			components, err := f.glyf.GetComponents(gid)
 			if err != nil {
-				slog.Debug(fmt.Sprintf("Error getting components for %d", gid))
+				// slog.Debug(fmt.Sprintf("Error getting components for %d", gid))
 				return nil, err
 			}
 			for _, gid := range components {
@@ -290,7 +288,7 @@ func (f *Font) SubsetKeepIndices(indices []GlyphIndex) (*Font, error) {
 // NOTE: If any of the first numGlyphs depend on later glyphs, it can lead to incorrect rendering.
 func (f *Font) SubsetFirst(numGlyphs int) (*Font, error) {
 	if int(f.maxp.numGlyphs) <= numGlyphs {
-		slog.Debug("Attempting to subset font with same number of glyphs - Ignoring, returning same back")
+		// slog.Debug("Attempting to subset font with same number of glyphs - Ignoring, returning same back")
 		return f, nil
 	}
 	newfnt := font{}

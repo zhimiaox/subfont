@@ -8,7 +8,6 @@ package subfont
 import (
 	"bytes"
 	"fmt"
-	"log/slog"
 	"strings"
 )
 
@@ -65,7 +64,7 @@ func (f *font) parseTableRecords(r *byteReader) (*tableRecords, error) {
 
 	numTables := int(f.ot.numTables)
 	if numTables < 0 {
-		slog.Debug("Invalid number of tables")
+		// slog.Debug("Invalid number of tables")
 		return nil, errRangeCheck
 	}
 
@@ -106,13 +105,13 @@ func (f *font) seekToTable(r *byteReader, tableName string) (tr *tableRecord, ha
 
 func (f *font) writeTableRecords(w *byteWriter) error {
 	if f.trec == nil {
-		slog.Debug("Table records not set")
+		// slog.Debug("Table records not set")
 		return errRequiredField
 	}
 
-	slog.Debug(fmt.Sprintf("Writing (len:%d):", len(f.trec.list)))
+	// slog.Debug(fmt.Sprintf("Writing (len:%d):", len(f.trec.list)))
 	for _, tr := range f.trec.list {
-		slog.Debug(fmt.Sprintf("%s - off: %d (len: %d)", tr.tableTag.String(), tr.offset, tr.length))
+		// slog.Debug(fmt.Sprintf("%s - off: %d (len: %d)", tr.tableTag.String(), tr.offset, tr.length))
 		err := tr.write(w)
 		if err != nil {
 			return err

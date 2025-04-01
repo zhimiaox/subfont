@@ -5,10 +5,6 @@
 
 package subfont
 
-import (
-	"log/slog"
-)
-
 // hheaTable represents the horizontal header table (hhea).
 // This table contains information for horizontal layout.
 // https://docs.microsoft.com/en-us/typography/opentype/spec/hhea
@@ -35,7 +31,7 @@ func (f *font) parseHhea(r *byteReader) (*hheaTable, error) {
 		return nil, err
 	}
 	if !has {
-		slog.Debug("hhea table absent")
+		// slog.Debug("hhea table absent")
 		return nil, nil
 	}
 
@@ -71,7 +67,7 @@ func (f *font) parseHhea(r *byteReader) (*hheaTable, error) {
 
 func (f *font) writeHhea(w *byteWriter) error {
 	if f.hhea == nil {
-		slog.Debug("hhea is nil - nothing to write")
+		// slog.Debug("hhea is nil - nothing to write")
 		return nil
 	}
 

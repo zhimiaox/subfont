@@ -5,10 +5,6 @@
 
 package subfont
 
-import (
-	"log/slog"
-)
-
 type hmtxTable struct {
 	hMetrics         []longHorMetric // length is numberOfHMetrics from hhea table.
 	leftSideBearings []int16         // length is (numGlyphs - numberOfHmetrics) from maxp and hhea tables.
@@ -21,7 +17,7 @@ type longHorMetric struct {
 
 func (f *font) parseHmtx(r *byteReader) (*hmtxTable, error) {
 	if f.maxp == nil || f.hhea == nil {
-		slog.Debug("maxp or hhea table missing")
+		// slog.Debug("maxp or hhea table missing")
 		return nil, errRequiredField
 	}
 
@@ -30,7 +26,7 @@ func (f *font) parseHmtx(r *byteReader) (*hmtxTable, error) {
 		return nil, err
 	}
 	if !has {
-		slog.Debug("hmtx table absent")
+		// slog.Debug("hmtx table absent")
 		return nil, nil
 	}
 

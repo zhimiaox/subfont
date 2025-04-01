@@ -5,10 +5,6 @@
 
 package subfont
 
-import (
-	"log/slog"
-)
-
 // prepTable represents a Control Value Program table (prep).
 // Consists of a set of TrueType instructions that will be executed whenever the font or point size
 // or transformation matrix change and before each glyph is interpreted.
@@ -24,7 +20,7 @@ func (f *font) parsePrep(r *byteReader) (*prepTable, error) {
 		return nil, err
 	}
 	if !has || tr == nil {
-		slog.Debug("prep table absent")
+		// slog.Debug("prep table absent")
 		return nil, nil
 	}
 
