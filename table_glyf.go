@@ -223,8 +223,8 @@ type compositeComponent struct {
 type compositeGlyphFlag uint16
 
 const (
-	arg1And2AreWords compositeGlyphFlag = (1 << iota) // If set, the args are 16-bit (uint16/int16), otherwise uint8/int8.
-	argsAreXYValues                                   // If set, the args are signed xy values (otherwise unsigned).
+	arg1And2AreWords compositeGlyphFlag = 1 << iota // If set, the args are 16-bit (uint16/int16), otherwise uint8/int8.
+	argsAreXYValues                                 // If set, the args are signed xy values (otherwise unsigned).
 	roundXYToGrid
 	weHaveAScale
 	_              // reserved
@@ -243,7 +243,7 @@ func (f compositeGlyphFlag) IsSet(flag compositeGlyphFlag) bool {
 	return f&flag != 0
 }
 
-// Returns list of glyphs that `gid` depends on (other than itself).
+// GetComponents Returns list of glyphs that `gid` depends on (other than itself).
 func (glyf *glyfTable) GetComponents(gid GlyphIndex) ([]GlyphIndex, error) {
 	if int(gid) >= len(glyf.descs) {
 		slog.Debug(fmt.Sprintf("GID not accessible (%d > %d)", gid, len(glyf.descs)))

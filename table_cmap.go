@@ -540,7 +540,7 @@ func writeCmapSubtableFormat12(subtable *cmapSubtable, w *byteWriter) error {
 	}
 
 	for _, group := range subt.groups {
-		slog.Debug(fmt.Sprintf("XXX Write, startCharcode: %d, endCharCode: %d, startGlyphID: %d", group.startCharCode, group.endCharCode, group.startGlyphID))
+		// slog.Debug(fmt.Sprintf("XXX Write, startCharcode: %d, endCharCode: %d, startGlyphID: %d", group.startCharCode, group.endCharCode, group.startGlyphID))
 		err = w.write(group.startCharCode, group.endCharCode, group.startGlyphID)
 		if err != nil {
 			return err

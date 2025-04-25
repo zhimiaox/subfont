@@ -14,8 +14,6 @@ import (
 	"unicode/utf8"
 
 	"golang.org/x/text/encoding/charmap"
-
-	"github.com/zhimiaox/subfont/internal/strutils"
 )
 
 // nameTable represents the Naming table (name).
@@ -145,7 +143,7 @@ func (nr nameRecord) Decoded() string {
 		// encoded in UTF-16BE. (https://docs.microsoft.com/en-us/typography/opentype/spec/name).
 		if nr.encodingID == 0 || nr.encodingID == 1 {
 			if len(nr.data) > 0 {
-				decoded := strutils.UTF16ToString(nr.data)
+				decoded := UTF16ToString(nr.data)
 				return makePrintable(decoded)
 			}
 		}
@@ -226,18 +224,18 @@ func (f *font) parseNameTable(r *byteReader) (*nameTable, error) {
 
 	for _, ltr := range t.langTagRecords {
 		if int(t.stringOffset)+int(ltr.offset)+int(ltr.length) > int(tr.length) {
-			slog.Debug("lang tag string offset outside table")
+			// slog.Debug("lang tag string offset outside table")
 			return nil, errRangeCheck
 		}
 
 		err = r.SeekTo(int64(t.stringOffset) + int64(tr.offset) + int64(ltr.offset))
 		if err != nil {
-			slog.Debug(fmt.Sprintf("Error: %v", err))
+			// slog.Debug(fmt.Sprintf("Error: %v", err))
 			return nil, err
 		}
 		err = r.readBytes(&ltr.data, int(ltr.length))
 		if err != nil {
-			slog.Debug(fmt.Sprintf("Error: %v", err))
+			// slog.Debug(fmt.Sprintf("Error: %v", err))
 			return nil, err
 		}
 	}
