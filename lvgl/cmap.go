@@ -34,7 +34,6 @@ type CmapSparseData struct {
 type CmapSparseTinyData []uint16 // 只存 codePoint - range_start
 
 func NewCmapTable(runes []rune) (*CmapTable, []CmapSubTableHeader, []uint16) {
-
 	tableRunes := CmapSplitSubTable(runes)
 	t := &CmapTable{
 		Size:   0,

@@ -4,7 +4,6 @@ import (
 	"bytes"
 	"encoding/binary"
 	"image"
-	"os"
 
 	"golang.org/x/image/draw"
 	"golang.org/x/image/font"
@@ -128,17 +127,19 @@ func AddGlyfData(buf *sfnt.Buffer, pf *sfnt.Font, fontSize uint16, r rune) (*Gly
 		info.Bitmap.WriteByte(bByte)
 	}
 
-	// Visualize the pixels.
-	const asciiArt = ".++8"
-	buf23 := make([]byte, 0, height*(width+1))
-	for y := 0; y < height; y++ {
-		for x := 0; x < width; x++ {
-			a := dst.AlphaAt(x, y).A
-			buf23 = append(buf23, asciiArt[a>>6])
+	/*
+		// Visualize the pixels.
+		const asciiArt = ".++8"
+		buf23 := make([]byte, 0, height*(width+1))
+		for y := 0; y < height; y++ {
+			for x := 0; x < width; x++ {
+				a := dst.AlphaAt(x, y).A
+				buf23 = append(buf23, asciiArt[a>>6])
+			}
+			buf23 = append(buf23, '\n')
 		}
-		buf23 = append(buf23, '\n')
-	}
-	os.Stdout.Write(buf23)
+		os.Stdout.Write(buf23)
+	*/
 
 	return info, nil
 }

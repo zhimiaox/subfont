@@ -22,7 +22,6 @@ func NewFont(pf *sfnt.Font, size uint16, runes []rune) ([]byte, error) {
 	}
 	slices.Sort(runes)
 	runes = slices.Compact(runes)
-	slog.Info(string(runes))
 	f := new(Font)
 	f.HeadTable = NewHeadTable(pf, size)
 	cmapTable, cmapSubHeaders, cmapSubData := NewCmapTable(runes)
