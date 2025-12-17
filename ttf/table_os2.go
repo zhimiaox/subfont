@@ -3,7 +3,7 @@
  * file 'LICENSE.md', which is part of this source code package.
  */
 
-package subfont
+package ttf
 
 // os2Table represents the OS/2 metrics table. It consists of metrics and other data that are required.
 type os2Table struct {

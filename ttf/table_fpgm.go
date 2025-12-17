@@ -3,7 +3,7 @@
  * file 'LICENSE.md', which is part of this source code package.
  */
 
-package subfont
+package ttf
 
 // fpgmTable represents font program instructions and is needed by fonts that are instructed.
 type fpgmTable struct {

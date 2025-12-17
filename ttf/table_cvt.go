@@ -3,7 +3,7 @@
  * file 'LICENSE.md', which is part of this source code package.
  */
 
-package subfont
+package ttf
 
 // cvtTable represents the Control Value Table (cvt).
 // This table contains a list of values that can be referenced by instructions.

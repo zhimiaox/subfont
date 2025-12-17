@@ -3,7 +3,7 @@
  * file 'LICENSE.md', which is part of this source code package.
  */
 
-package subfont
+package ttf
 
 // hheaTable represents the horizontal header table (hhea).
 // This table contains information for horizontal layout.

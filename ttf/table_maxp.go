@@ -3,7 +3,7 @@
  * file 'LICENSE.md', which is part of this source code package.
  */
 
-package subfont
+package ttf
 
 // maxpTable represents the Maximum Profile (maxp) table.
 // This table establishes the memory requirements for the font.

@@ -3,7 +3,7 @@
  * file 'LICENSE.md', which is part of this source code package.
  */
 
-package subfont
+package ttf
 
 type hmtxTable struct {
 	hMetrics         []longHorMetric // length is numberOfHMetrics from hhea table.

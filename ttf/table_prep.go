@@ -3,7 +3,7 @@
  * file 'LICENSE.md', which is part of this source code package.
  */
 
-package subfont
+package ttf
 
 // prepTable represents a Control Value Program table (prep).
 // Consists of a set of TrueType instructions that will be executed whenever the font or point size

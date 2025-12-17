@@ -1,4 +1,4 @@
-package subfont
+package ttf
 
 import (
 	"bytes"
@@ -16,7 +16,7 @@ import (
 
 func TestSubSetDiff(t *testing.T) {
 	ru := []rune(" %.0123456789:℃一")
-	f1data, err := os.ReadFile("./testdata/NotoSansSC-Bold.ttf")
+	f1data, err := os.ReadFile("../testdata/NotoSansSC-Bold.ttf")
 	if err != nil {
 		log.Println(err)
 		return
@@ -26,7 +26,7 @@ func TestSubSetDiff(t *testing.T) {
 		log.Println(err)
 		return
 	}
-	f2data, err := os.ReadFile("./testdata/subfont.ttf")
+	f2data, err := os.ReadFile("../testdata/subfont.ttf")
 	if err != nil {
 		log.Println(err)
 		return
@@ -56,7 +56,7 @@ func TestSubSetDiff(t *testing.T) {
 }
 
 func TestFont_LookupRunes(t *testing.T) {
-	tfnt, err := ParseFile("./testdata/Ubuntu-Medium.ttf")
+	tfnt, err := ParseFile("../testdata/Ubuntu-Medium.ttf")
 	if err != nil {
 		panic(err)
 	}
@@ -67,8 +67,8 @@ func TestFont_LookupRunes(t *testing.T) {
 }
 
 func TestFont_Subset(t *testing.T) {
-	tfnt, err := ParseFile("./testdata/NotoSansSC-Bold.ttf")
-	// tfnt, err := ParseFile("./testdata/Ubuntu-Medium.ttf")
+	tfnt, err := ParseFile("../testdata/NotoSansSC-Bold.ttf")
+	// tfnt, err := ParseFile("../testdata/Ubuntu-Medium.ttf")
 	if err != nil {
 		panic(err)
 	}
@@ -82,7 +82,7 @@ func TestFont_Subset(t *testing.T) {
 	if err = subfnt.Write(fontbuf); err != nil {
 		panic(err)
 	}
-	os.WriteFile("./testdata/subfont.ttf", fontbuf.Bytes(), 0666)
+	os.WriteFile("../testdata/subfont.ttf", fontbuf.Bytes(), 0666)
 	sf, err := Parse(bytes.NewReader(fontbuf.Bytes()))
 	if err != nil {
 		panic(err)

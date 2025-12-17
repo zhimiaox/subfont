@@ -1,4 +1,4 @@
-package subfont
+package ttf
 
 import (
 	"math"
