@@ -61,10 +61,10 @@ func AddGlyfData(buf *sfnt.Buffer, pf *sfnt.Font, fontSize uint16, r rune) (*Gly
 	info := &GlyfData{
 		GlyfDataInfo: GlyfDataInfo{
 			AdvanceWidth: int16(advance.Round() * 16), // LVGL FP4,
-			//BBoxX:        int8(bounds.Min.X.Round()),
-			//BBoxY:        int8(bounds.Min.Y.Round()),
-			BBoxWidth:  uint8(bounds.Max.X.Round() - bounds.Min.X.Round()),
-			BBoxHeight: uint8(bounds.Max.Y.Round() - bounds.Min.Y.Round()),
+			BBoxX:        int8(bounds.Min.X.Round()),
+			BBoxY:        -int8(bounds.Max.Y.Round()),
+			BBoxWidth:    uint8(bounds.Max.X.Round() - bounds.Min.X.Round()),
+			BBoxHeight:   uint8(bounds.Max.Y.Round() - bounds.Min.Y.Round()),
 		},
 		Bitmap: new(bytes.Buffer),
 	}

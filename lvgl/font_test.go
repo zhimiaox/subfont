@@ -18,6 +18,6 @@ func TestNewFont(t *testing.T) {
 		panic(err)
 	}
 
-	bin, _ := NewFont(pf, 32, append([]rune("0123"), 0x71CA, 0x01F16C, 0x2265))
-	t.Logf("%X", bin)
+	bin, _ := NewFont(pf, 32, append([]rune("abgpqttx"), 0x71CA, 0x01F16C, 0x2265))
+	_ = os.WriteFile("out.bin", bin, 655)
 }
